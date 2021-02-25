@@ -25,10 +25,12 @@
                     <a th:href="@{/venuelist/filter}" class="buttonLook filterButton">+</a>
                 </div>
             </div>
-            <div th:each="venue, status: ${venues}">
-                <a class="buttonLook mediumButton" th:href="@{'/venuedetails/' + ${venue.id}}">
-                    <span th:text="${venue.getVenueName()}">Naam venue</span>
-                </a>
+            <div class="venuelist collectionlist">
+                <div th:each="venue, status: ${venues}">
+                    <a class="buttonLook mediumButton" th:href="@{'/venuedetails/' + ${venue.id}}">
+                        <span th:text="${venue.getVenueName()}">Naam venue</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
