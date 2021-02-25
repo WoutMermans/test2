@@ -142,6 +142,8 @@ p { margin: 5px; }
 }
 
 .filters {
+    clear: left;
+    float: left;
 }
 
 .onefilter {
@@ -150,7 +152,25 @@ p { margin: 5px; }
 }
 
 .filtername {
-    width: 10em;
     padding: 0.2em;
+    width: 70px;
     text-align: right;
+}
+
+input + span {
+    margin-left: 5px;
+}
+
+.verticalmargin {
+    margin: 8px 0;
+}
+
+.generalinfo {
+    font-size: 12px;
+    background-color: lightgoldenrodyellow;
+    padding: 1px 5px;
+}
+
+.collectionlist {
+    float: left;
 }

@@ -11,42 +11,18 @@
     <div class="row1">
         <div class="row1content">
             <h1>Venues</h1>
-            <div class="filters">
-                <div class="onefilter">
-                    <div class="filtername">outdoor:</div>
-                    <a class="buttonLook filterButton" th:classappend="${outdoorFilter==null} ? 'activeFilter' : ''"
-                       href="/venuelist">all</a>
-                    <a class="buttonLook filterButton"
-                       th:classappend="${outdoorFilter!=null && outdoorFilter} ? 'activeFilter' : ''"
-                       href="/venuelist/outdoor/yes">yes</a>
-                    <a class="buttonLook filterButton"
-                       th:classappend="${outdoorFilter!=null && !outdoorFilter} ? 'activeFilter' : ''"
-                       href="/venuelist/outdoor/no">no</a>
+            <div class="verticalmargin">
+                <span class="generalinfo" th:text="|${nrVenues} venues found|">0 venues found</span>
+            </div>
+            <div class="filters" th:if="${showFilter}">
+                <div class="verticalmargin">
+                    <a th:href="@{/venuelist}" class="buttonLook filterButton">-</a>
                 </div>
-                <div class="onefilter">
-                    <div class="filtername">indoor:</div>
-                    <a class="buttonLook filterButton" th:classappend="${indoorFilter==null} ? 'activeFilter' : ''"
-                       href="/venuelist">all</a>
-                    <a class="buttonLook filterButton"
-                       th:classappend="${indoorFilter!=null && indoorFilter} ? 'activeFilter' : ''"
-                       href="/venuelist/indoor/yes">yes</a>
-                    <a class="buttonLook filterButton"
-                       th:classappend="${indoorFilter!=null && !indoorFilter} ? 'activeFilter' : ''"
-                       href="/venuelist/indoor/no">no</a>
-                </div>
-                <div class="onefilter">
-                    <div class="filtername">size:</div>
-                    <a class="buttonLook filterButton" th:classappend="${sizeFilter==null} ? 'activeFilter' : ''"
-                       href="/venuelist">all</a>
-                    <a class="buttonLook filterButton"
-                       th:classappend="${sizeFilter!=null && sizeFilter.equals('S')} ? 'activeFilter' : ''"
-                       href="/venuelist/size/S">S</a>
-                    <a class="buttonLook filterButton"
-                       th:classappend="${sizeFilter!=null && sizeFilter.equals('M')} ? 'activeFilter' : ''"
-                       href="/venuelist/size/M">M</a>
-                    <a class="buttonLook filterButton"
-                       th:classappend="${sizeFilter!=null && sizeFilter.equals('L')} ? 'activeFilter' : ''"
-                       href="/venuelist/size/L">L</a>
+                <p>hier komen de filters</p>
+            </div>
+            <div class="filters" th:unless="${showFilter}">
+                <div class="verticalmargin">
+                    <a th:href="@{/venuelist/filter}" class="buttonLook filterButton">+</a>
                 </div>
             </div>
             <div th:each="venue, status: ${venues}">
