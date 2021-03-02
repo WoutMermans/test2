@@ -31,9 +31,28 @@ public class VenueController {
     public String venueListWithFilter(Model model, @RequestParam(required = false) Integer minimumCapacity, @RequestParam(required = false) Integer maximumCapacity,
                                       @RequestParam(required = false) Double distance, @RequestParam(required = false) String foodProvided,
                                       @RequestParam(required = false) String indoor, @RequestParam(required = false) String outdoor) {
-        Iterable<Venue> venues = venueRepository.findAll();
+        logger.info(String.format("venueListWithFilter -- min=%d", minimumCapacity));
+        logger.info(String.format("venueListWithFilter -- max=%d", maximumCapacity));
+        Iterable<Venue> venues;
+        long nrVenues;
+        model.addAttribute("minimumCapacity", minimumCapacity);
+        model.addAttribute("maximumCapacity", maximumCapacity);
+        if (minimumCapacity!=null && maximumCapacity!=null) {
+            // beide niet null
+            venues = venueRepository.findByCapacityBetween(minimumCapacity, maximumCapacity);
+        } else if (minimumCapacity!=null) {
+            // min niet NULL, max NULL
+            venues = venueRepository.findByCapacityGreaterThanEqual(minimumCapacity);
+        } else if (maximumCapacity!=null) {
+            // min NULL, max niet NULL
+            venues = venueRepository.findByCapacityLessThanEqual(maximumCapacity);
+        } else {
+            venues = venueRepository.findAll();
+        }
+        Collection venueCol = (Collection<Venue>) venues;
+        nrVenues = venueCol.size();
         model.addAttribute("venues", venues);
-        model.addAttribute("nrVenues", venueRepository.count());
+        model.addAttribute("nrVenues", nrVenues);
         model.addAttribute("showFilter", true);
         return "venuelist";
     }

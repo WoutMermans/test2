@@ -18,7 +18,19 @@
                 <div class="verticalmargin">
                     <a th:href="@{/venuelist}" class="buttonLook filterButton">-</a>
                 </div>
-                <p>hier komen de filters</p>
+                <form>
+                    <div class="onefilter">
+                        <input type="submit" value="search" class="buttonLook">
+                    </div>
+                    <h3>capacity</h3>
+                    <div class="onefilter">
+                        <label for="minCapacity" class="filtername">min</label>
+                        <input type="number" id="minCapacity" name="minimumCapacity" th:value="${minimumCapacity}" step="50" min="0"> <span>persons</span>
+                    </div>
+                    <div class="onefilter">
+                        <label for="maxCapacity" class="filtername">max</label>
+                        <input type="number" id="maxCapacity" name="maximumCapacity" th:value="${maximumCapacity}" step="50" min="0"> <span>persons</span>
+                    </div></form>
             </div>
             <div class="filters" th:unless="${showFilter}">
                 <div class="verticalmargin">
@@ -29,6 +41,9 @@
                 <div th:each="venue, status: ${venues}">
                     <a class="buttonLook mediumButton" th:href="@{'/venuedetails/' + ${venue.id}}">
                         <span th:text="${venue.getVenueName()}">Naam venue</span>
+                        <div>
+                            <span class="generalinfo" th:text="|Capacity: ${venue.capacity}|">Capacity: 0</span>
+                        </div>
                     </a>
                 </div>
             </div>
