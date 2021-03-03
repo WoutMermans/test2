@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
+import java.util.List;
 
 @Controller
 public class VenueController {
@@ -31,28 +32,18 @@ public class VenueController {
     public String venueListWithFilter(Model model, @RequestParam(required = false) Integer minimumCapacity, @RequestParam(required = false) Integer maximumCapacity,
                                       @RequestParam(required = false) Double distance, @RequestParam(required = false) String foodProvided,
                                       @RequestParam(required = false) String indoor, @RequestParam(required = false) String outdoor) {
-        logger.info(String.format("venueListWithFilter -- min=%d", minimumCapacity));
-        logger.info(String.format("venueListWithFilter -- max=%d", maximumCapacity));
-        Iterable<Venue> venues;
-        long nrVenues;
-        model.addAttribute("minimumCapacity", minimumCapacity);
-        model.addAttribute("maximumCapacity", maximumCapacity);
-        if (minimumCapacity!=null && maximumCapacity!=null) {
-            // beide niet null
-            venues = venueRepository.findByCapacityBetween(minimumCapacity, maximumCapacity);
-        } else if (minimumCapacity!=null) {
-            // min niet NULL, max NULL
-            venues = venueRepository.findByCapacityGreaterThanEqual(minimumCapacity);
-        } else if (maximumCapacity!=null) {
-            // min NULL, max niet NULL
-            venues = venueRepository.findByCapacityLessThanEqual(maximumCapacity);
-        } else {
-            venues = venueRepository.findAll();
-        }
-        Collection venueCol = (Collection<Venue>) venues;
-        nrVenues = venueCol.size();
+        List<Venue> venues = venueRepository.findByCapacityDistanceFoodIndoorOutdoor(minimumCapacity, maximumCapacity, distance,
+                ((foodProvided==null || foodProvided.equals("all")) ? null : (foodProvided.equals("yes") ? true : false)),
+                ((indoor==null || indoor.equals("all")) ? null : (indoor.equals("yes") ? true : false)),
+                ((outdoor==null || outdoor.equals("all")) ? null : (outdoor.equals("yes") ? true : false)));
+        model.addAttribute("maxCapacity", maximumCapacity);
+        model.addAttribute("minCapacity", minimumCapacity);
+        model.addAttribute("distance", distance);
+        model.addAttribute("foodProvided", foodProvided);
+        model.addAttribute("indoor", indoor);
+        model.addAttribute("outdoor", outdoor);
         model.addAttribute("venues", venues);
-        model.addAttribute("nrVenues", nrVenues);
+        model.addAttribute("nrVenues", venues.size());
         model.addAttribute("showFilter", true);
         return "venuelist";
     }

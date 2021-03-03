@@ -25,12 +25,45 @@
                     <h3>capacity</h3>
                     <div class="onefilter">
                         <label for="minCapacity" class="filtername">min</label>
-                        <input type="number" id="minCapacity" name="minimumCapacity" th:value="${minimumCapacity}" step="50" min="0"> <span>persons</span>
+                        <input type="number" id="minCapacity" name="minimumCapacity" th:value="${minCapacity}" step="50"> <span>persons</span>
                     </div>
                     <div class="onefilter">
                         <label for="maxCapacity" class="filtername">max</label>
-                        <input type="number" id="maxCapacity" name="maximumCapacity" th:value="${maximumCapacity}" step="50" min="0"> <span>persons</span>
-                    </div></form>
+                        <input type="number" id="maxCapacity" name="maximumCapacity" th:value="${maxCapacity}" step="50"> <span>persons</span>
+                    </div>
+                    <h3>distance to public transport</h3>
+                    <div class="onefilter">
+                        <label for="distance" class="filtername">max</label>
+                        <input type="number" id="distance" name="distance" th:value="${distance}" step="0.5"> <span>km</span>
+                    </div>
+                    <h3>food provided</h3>
+                    <div class="onefilter">
+                        <label for="foodprovided1" class="filtername">yes</label>
+                        <input type="radio" id="foodprovided1" name="foodProvided" value="yes" th:checked="${foodProvided}=='yes'">
+                        <label for="foodprovided2" class="filtername">no</label>
+                        <input type="radio" id="foodprovided2" name="foodProvided" value="no" th:checked="${foodProvided}=='no'">
+                        <label for="foodprovided3" class="filtername">all</label>
+                        <input type="radio" id="foodprovided3" name="foodProvided" value="all" th:checked="${foodProvided}=='all'">
+                    </div>
+                    <h3>indoor</h3>
+                    <div class="onefilter">
+                        <label for="indoor1" class="filtername">yes</label>
+                        <input type="radio" id="indoor1" name="indoor" value="yes" th:checked="${indoor}=='yes'">
+                        <label for="indoor2" class="filtername">no</label>
+                        <input type="radio" id="indoor2" name="indoor" value="no" th:checked="${indoor}=='no'">
+                        <label for="indoor3" class="filtername">all</label>
+                        <input type="radio" id="indoor3" name="indoor" value="all" th:checked="${indoor}=='all'">
+                    </div>
+                    <h3>outdoor</h3>
+                    <div class="onefilter">
+                        <label for="outdoor1" class="filtername">yes</label>
+                        <input type="radio" id="outdoor1" name="outdoor" value="yes" th:checked="${outdoor}=='yes'">
+                        <label for="outdoor2" class="filtername">no</label>
+                        <input type="radio" id="outdoor2" name="outdoor" value="no" th:checked="${outdoor}=='no'">
+                        <label for="outdoor3" class="filtername">all</label>
+                        <input type="radio" id="outdoor3" name="outdoor" value="all" th:checked="${outdoor}=='all'">
+                    </div>
+                </form>
             </div>
             <div class="filters" th:unless="${showFilter}">
                 <div class="verticalmargin">
