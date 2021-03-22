@@ -1,0 +1,40 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Animal Details</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css" />
+</head>
+<body>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
+<div class="row1">
+    <div class="row1content">
+        <div th:if="${prev!=null}" class="prevButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{'/animaldetails/' + ${prev}}">&lt;</a>
+        </div>
+        <div th:if="${next!=null}" class="nextButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{'/animaldetails/' + ${next}}">&gt;</a>
+        </div>
+        <div>
+            <h2 th:if="${animal}" th:text="|animal: ${animal.name}|">animal: onbekend</h2>
+            <p th:unless="${animal}">animal: onbekend</p>
+        </div>
+        <div th:if="${animal}">
+            <div class="info">City : </div>
+            <div><p th:text="${animal.getCity()}">0</p></div><br>
+            <div class="info">Bio : </div>
+            <div><p th:text="${animal.getBio()}">no</p></div><br>
+            <div th:if="${animal.getParties().size()}>0" class="partylist collectionlist">
+                <h2>going to</h2>
+                <div th:each="party: ${animal.getParties()}">
+                    <a class="buttonLook mediumButton" th:href="@{'/partydetails/'+${party.getId()}}">
+                        <span th:text="${party.getName()}">party name</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
+</body>
+</html>
