@@ -16,7 +16,7 @@
             <a class="buttonLook smallButton" th:href="@{'/partydetails/' + ${next}}">&gt;</a>
         </div>
         <div>
-            <h2 th:if="${party}" th:text="|artist: ${party.name}|">party: onbekend</h2>
+            <h2 th:if="${party}" th:text="|party: ${party.name}|">party: onbekend</h2>
             <h4 th:if="${party}" th:text="${party.date}">geen datum</h4>
             <p th:unless="${party}">party: onbekend</p>
         </div>
@@ -35,6 +35,14 @@
             <div th:if="${!party.extraInfo.trim().equals('')}">
                 <div class="info">Extra info : </div>
                 <div><p th:text="${party.extraInfo}">no</p></div><br>
+            </div>
+            <div th:if="${party.getArtists().size()}>0" class="artistlist collectionlist">
+                <h2>line up:</h2>
+                <div th:each="artist: ${party.getArtists()}">
+                    <a class="buttonLook mediumButton" th:href="@{'/artistdetails/'+${artist.getId()}}">
+                        <span th:text="${artist.getArtistName()}">artist name</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

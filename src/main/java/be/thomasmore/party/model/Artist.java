@@ -1,6 +1,7 @@
 package be.thomasmore.party.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Artist {
@@ -13,6 +14,8 @@ public class Artist {
     private String bio;
     @Column(length = 1000)
     private String portfolio;
+    @ManyToMany(mappedBy = "artists")
+    private Collection<Party> parties;
 
     public Artist() {
     }
@@ -63,5 +66,13 @@ public class Artist {
 
     public void setPortfolio(String portfolio) {
         this.portfolio = portfolio;
+    }
+
+    public Collection<Party> getParties() {
+        return parties;
+    }
+
+    public void setParties(Collection<Party> parties) {
+        this.parties = parties;
     }
 }
