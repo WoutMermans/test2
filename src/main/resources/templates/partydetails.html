@@ -44,6 +44,14 @@
                     </a>
                 </div>
             </div>
+            <div th:if="${party.getAnimals().size()}>0" class="animallist collectionlist">
+                <h2>who goes?</h2>
+                <div th:each="animal: ${party.getAnimals()}">
+                    <a class="buttonLook mediumButton" th:href="@{'/animaldetails/'+${animal.getId()}}">
+                        <span th:text="${animal.getName()}">artist name</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
