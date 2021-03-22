@@ -1,9 +1,6 @@
 package be.thomasmore.party.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,6 +15,8 @@ public class Party {
     private Date date;
     @Temporal(TemporalType.TIME)
     private Date doors;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Venue venue;
 
     public Party() {
     }
@@ -76,5 +75,13 @@ public class Party {
 
     public void setDoors(Date doors) {
         this.doors = doors;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 }

@@ -175,6 +175,40 @@ Dreamville, MnM Start to Dj Finalist Flowtrack Summer Camp Casa Blanca
 Festival Sunrise Festival Red ''n Blue Café Local Noxx Publik Vice Festival
 KdG TD ...');
 
+INSERT INTO PARTY
+(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors,
+ venue_Id)
+VALUES
+(1, 'Big Spring Party', 6, 10, '1 cocktail included',
+ '2021-03-21', '10:00', 1);
+
+INSERT INTO PARTY
+(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors,
+ venue_Id)
+VALUES
+(2, 'Liberty 2021', 4, 6, 'free vestiaire, viplounge',
+ '2021-04-3', '22:00', 2);
+
+INSERT INTO PARTY
+(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors,
+ venue_Id)
+VALUES
+(3, 'Uppercuts', null, null, ' ',
+ '2021-03-14', '21:00', 4);
+
+INSERT INTO PARTY
+(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors,
+ venue_Id)
+VALUES
+(4, 'Zoetzuur', null, null, 'Zoete house / Zure techno',
+ '2021-03-21', '21:00', 4);
+
+INSERT INTO PARTY
+(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors,
+ venue_Id)
+VALUES
+(5, 'Oldies but Goldies', null, null, 'afterparty@home van THE BOX!',
+ '2020-03-28', '21:00', 4);
 
 
 

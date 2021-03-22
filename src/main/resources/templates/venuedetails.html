@@ -15,11 +15,8 @@
         <div th:if="${next!=null}" class="nextButtonDiv">
             <a class="buttonLook smallButton" th:href="@{'/venuedetails/' + ${next}}">&gt;</a>
         </div>
-        <div>
-            <h2 th:if="${venue}" th:text="|venue: ${venue.venueName}|">venue: onbekend</h2>
-            <p th:unless="${venue}">venue: onbekend</p>
-        </div>
-        <div th:if="${venue}">
+        <div th:if="${venue}" >
+            <h2 th:text="|venue: ${venue.venueName}|">venue: onbekend</h2>
             <div class="info">Info : </div>
             <div><a th:href="@{${venue.getLinkMoreInfo()}}" th:text="${venue.getLinkMoreInfo()}">klik hier</a></div><br>
             <div class="info">Capacity : </div>
@@ -36,6 +33,18 @@
             <div><p th:text="${venue.distanceFromPublicTransportInKm}">0</p></div><br>
             <div class="info">City : </div>
             <div><p th:text="${venue.getCity()}">?/p></div>
+            <h2 th:text="|parties in de ${venue.venueName}|">parties</h2>
+            <div class="partylist collectionlist">
+                <div th:each="party, status: ${parties}">
+                    <a class="buttonLook mediumButton" th:href="@{'/partydetails/' + ${party.id}}">
+                        <span th:text="${party.getName()}">Naam party</span>
+                    </a>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div th:unless="${venue}">
+            <p>venue: onbekend</p>
         </div>
     </div>
 </div>

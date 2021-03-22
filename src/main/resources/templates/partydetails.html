@@ -1,0 +1,44 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css" />
+<head>
+    <meta charset="UTF-8">
+    <title>partydetails</title>
+</head>
+<body>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
+<div class="row1">
+    <div class="row1content">
+        <div th:if="${prev!=null}" class="prevButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{'/partydetails/' + ${prev}}">&lt;</a>
+        </div>
+        <div th:if="${next!=null}" class="nextButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{'/partydetails/' + ${next}}">&gt;</a>
+        </div>
+        <div>
+            <h2 th:if="${party}" th:text="|artist: ${party.name}|">party: onbekend</h2>
+            <h4 th:if="${party}" th:text="${party.date}">geen datum</h4>
+            <p th:unless="${party}">party: onbekend</p>
+        </div>
+        <div th:if="${party}">
+            <div class="info">Where : </div>
+            <div><p>
+                <span th:text="|${party.venue.venueName} (${party.venue.city}, ${party.venue.distanceFromPublicTransportInKm} km van openbaar vervoer) |">venue</span>
+                <span><a th:href="@{'/venuedetails/' + ${party.venue.id}}">&#128279;</a></span>
+            </p></div><br>
+            <div class="info">Price : </div>
+            <div th:if="${party.priceInEur}"><p th:text="|${party.pricePresaleInEur} &euro; (presale) / ${party.priceInEur} &euro;|">0</p></div>
+            <div th:unless="${party.priceInEur}"><p>gratis</p></div>
+            <br>
+            <div class="info">Doors : </div>
+            <div><p th:text="${party.doors}">bio</p></div><br>
+            <div th:if="${!party.extraInfo.trim().equals('')}">
+                <div class="info">Extra info : </div>
+                <div><p th:text="${party.extraInfo}">no</p></div><br>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
+</body>
+</html>
