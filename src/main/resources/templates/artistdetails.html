@@ -28,6 +28,14 @@
             <div><p th:text="${artist.bio}">bio</p></div><br>
             <div class="info">Portfolio : </div>
             <div><p th:text="${artist.portfolio}">no</p></div><br>
+            <div th:if="${artist.getParties().size()}>0" class="partylist collectionlist">
+                <h2 th:text="|parties by ${artist.getArtistName()}|">parties by this artist</h2>
+                <div th:each="party: ${artist.getParties()}">
+                    <a class="buttonLook mediumButton" th:href="@{'/partydetails/'+${party.getId()}}">
+                        <span th:text="${party.getName()}">party name</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
