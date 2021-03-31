@@ -1,7 +1,10 @@
 package be.thomasmore.party.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.Collection;
 
 @Entity
 public class Venue {
@@ -16,6 +19,8 @@ public class Venue {
     private boolean freeParkingAvailable;
     private String city;
     private double distanceFromPublicTransportInKm;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Collection<Drink> drinks;
 
     public Venue() {
     }
@@ -47,6 +52,14 @@ public class Venue {
 
     public String getVenueName() {
         return venueName;
+    }
+
+    public Collection<Drink> getDrinks() {
+        return drinks;
+    }
+
+    public void setDrinks(Collection<Drink> drinks) {
+        this.drinks = drinks;
     }
 
     public void setVenueName(String venueName) {

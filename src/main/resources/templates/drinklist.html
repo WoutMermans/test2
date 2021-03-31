@@ -1,0 +1,70 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css"/>
+<head>
+    <meta charset="UTF-8">
+    <title>drinklist</title>
+</head>
+<body>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
+<div>
+    <div class="row1">
+        <div class="row1content">
+            <h2>Drinks</h2>
+            <div class="verticalmargin">
+                <span class="generalinfo" th:text="|${nrDrinks} Drinks found|">0 venues found</span>
+            </div>
+            <div class="filters" th:if="${showFilter}">
+                <div class="verticalmargin">
+                    <a th:href="@{/drinklist}" class="buttonLook filterButton">-</a>
+                </div>
+                <form>
+                    <div class="onefilter">
+                        <input type="submit" value="search" class="buttonLook">
+                    </div>
+                    <h3>Price</h3>
+                    <div class="onefilter">
+                        <label for="maxPrice" class="filtername">max</label>
+                        <input type="number" id="maxPrice" name="maximumPrice" th:value="${maxPrice}" step="0,5"> <span>vul de maximale prijs in</span>
+                    </div>
+                    <h3>alcohol</h3>
+                    <div class="onefilter">
+                        <label for="alcoholic1" class="filtername">yes</label>
+                        <input type="radio" id="alcoholic1" name="alcoholic" value="yes"
+                               th:checked="${alcoholic}=='yes'">
+                        <label for="alcoholic2" class="filtername">no</label>
+                        <input type="radio" id="alcoholic2" name="alcoholic" value="no" th:checked="${alcoholic}=='no'">
+                        <label for="alcoholic3" class="filtername">all</label>
+                        <input type="radio" id="alcoholic3" name="alcoholic" value="all"
+                               th:checked="${alcoholic}=='all'">
+                    </div>
+                    <h3>Light</h3>
+                    <div class="onefilter">
+                        <label for="light1" class="filtername">yes</label>
+                        <input type="radio" id="light1" name="light" value="yes" th:checked="${light}=='yes'">
+                        <label for="light2" class="filtername">no</label>
+                        <input type="radio" id="light2" name="light" value="no" th:checked="${light}=='no'">
+                        <label for="light3" class="filtername">all</label>
+                        <input type="radio" id="light3" name="light" value="all" th:checked="${light}=='all'">
+                    </div>
+                </form>
+            </div>
+            <div class="filters" th:unless="${showFilter}">
+                <div class="verticalmargin">
+                    <a th:href="@{/drinklist/filter}" class="buttonLook filterButton">+</a>
+                </div>
+            </div>
+            <div class="drinklist collectionlist">
+                <div th:each="drink, status: ${drinks}">
+                    <a class="buttonLook mediumButton" th:href="@{'/drinkdetails/' + ${drink.id}}">
+                        <span th:text="|${drink.getName()}  ${drink.getPrice()}|">Name drink</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
+</body>
+</html>

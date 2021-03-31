@@ -50,6 +50,7 @@ a {
 .row1content {
     flex-grow: 4;
     margin: 0 50px;
+    margin-top: 175px;
 }
 
 /* links that look like buttons */

@@ -257,3 +257,11 @@ INSERT INTO PARTY_ANIMALS (PARTIES_ID, ANIMALS_ID) VALUES (5, 3);
 INSERT INTO PARTY_ANIMALS (PARTIES_ID, ANIMALS_ID) VALUES (1, 4);
 INSERT INTO PARTY_ANIMALS (PARTIES_ID, ANIMALS_ID) VALUES (2, 4);
 INSERT INTO PARTY_ANIMALS (PARTIES_ID, ANIMALS_ID) VALUES (1, 5);
+
+
+insert into DRINK (ID, NAME, LIGHT, ALCOHOLIC,PRICE) values(1,'Coca Cola', false, false, 2.5);
+insert into DRINK (ID, NAME, LIGHT, ALCOHOLIC,PRICE) values(2,'Cola Zero', true, false, 2.5);
+insert into DRINK (ID, NAME, LIGHT, ALCOHOLIC,PRICE) values(3,'Crodino', false, false, 4);
+insert into DRINK (ID, NAME, LIGHT, ALCOHOLIC,PRICE) values(4,'red wine', false, true, 5);
+insert into drink (id, name, light, alcoholic,price) values(5,'white wine', false, true, 5);
+
